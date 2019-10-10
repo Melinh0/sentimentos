@@ -47,7 +47,7 @@ def buscapalavras(frases):
 
 
 palavras = buscapalavras(frasescomstemming)
-print(palavras)
+#print(palavras)
 
 
 def buscafrequencia(palavras):
@@ -92,8 +92,8 @@ basecompleta = nltk.classify.apply_features(extraipalavras, frasescomstemming)
 
 # constroi a tabela de probabilidade
 classificador = nltk.NaiveBayesClassifier.train(basecompleta)
-print(classificador.labels())
-print(classificador.show_most_informative_features(5))
+#print(classificador.labels())
+#print(classificador.show_most_informative_features(5))
 """
 Most Informative Features
                      cap = False           raiva : alegri =      2.6 : 1.0
@@ -110,3 +110,26 @@ do que de alegria.
 Segunda linha quando a palavra celul= false, não aparece significa que tem a probabilidade de 1.4 vezes mais de ser uma frase de raiva
 do que de alegria
 """
+#Testando com uma frase nova
+
+teste = 'Eu nunca mais compro campinha de celular desta marca'
+testestem = []
+stemmer = nltk.stem.RSLPStemmer()
+for (palavrastreinamento) in teste.split():
+    comstem = [p for p in palavrastreinamento.split()]
+    testestem.append(str(stemmer.stem(comstem[0])))
+
+
+
+
+nova_frase = extrai_palavras(testestem)
+
+distribuicao = classificador.prob_classify(nova_frase)
+print('-----------------------')
+for classe in distribuicao.samples():
+    print("%s: %f" % (classe, distribuicao.prob(classe)))
+
+
+
+
+
