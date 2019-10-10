@@ -1,7 +1,7 @@
 import nltk
 
-nltk.download()
-
+#nltk.download()
+#nltk.download faz o download das palavras do nltk
 
 base = [('Essa capinha de celular é muito boa', 'alegria'),
         ('Gostei muito desta capinha de celular', 'alegria'),
